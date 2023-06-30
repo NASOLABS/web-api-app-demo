@@ -1,14 +1,14 @@
-Flask>=0.11
+Flask==2.0.3
 
 flask-restplus>=0.10.1
-
 Flask-Cors==3.0.2
 
 SQLAlchemy==1.1.5
 SQLAlchemy-Utils==0.32.12
 Flask-SQLAlchemy==2.2
 Alembic==0.8.10
-werkzeug==0.14.1
+jinja2==3.0.3
+werkzeug==2.0.3
 
 marshmallow>=2.13.5
 flask-marshmallow==0.7.0
@@ -23,7 +23,6 @@ Flask-Login==0.4.0
 permission==0.4.1
 
 arrow==0.8.0
-
 
 six
 enum34; python_version < '3.4'
