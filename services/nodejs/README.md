@@ -43,7 +43,5 @@ npm start
 
 ## License
 
-MIT © [Abigail Ranson](LICENSE)
-
 [npm-image]: https://badge.fury.io/js/npm.svg
 [npm-url]: https://badge.fury.io/js/npm
