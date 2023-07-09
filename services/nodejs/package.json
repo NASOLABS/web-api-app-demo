@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "setup": "./scripts/setup.sh",
-    "start": "source .env && backpack",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider source .env && backpack",
+    "oostart": "react-scripts --openssl-legacy-provider start",
     "build": "backpack build",
     "clean": "./scripts/clean.sh",
     "docker": "docker run -p 4000:4000 -d $IMAGE_NAME",
