@@ -24,11 +24,7 @@ module.exports = options => ({
     modules: ['node_modules'],
     alias: {
       node_modules: path.resolve(__dirname, '..', 'node_modules'),
-      app: path.resolve(__dirname, '..', 'src/app'),
-      web: path.resolve(__dirname, '..', 'src/web'),
-      images: path.resolve(__dirname, '..', 'src/web/img'),
-      data: path.resolve(__dirname, '..', 'src/data'),
-      package: path.resolve(__dirname, '..', 'package'),
+      app: path.resolve(__dirname, '..', 'src'),
     },
   },
   module: {
@@ -75,14 +71,16 @@ module.exports = options => ({
       'process.env': JSON.stringify(process.env),
     }),
     // new webpack.EnvironmentPlugin(['NODE_ENV', 'API_KEY', 'SENDER_ID', 'APP_ID', 'PROJECT_ID', '_RELEASE']),
-    new CopyWebpackPlugin([
-      { from: './src/web/img', to: 'img' },
-      { from: './src/web/favicon.ico', to: 'favicon.ico' },
-      { from: './src/web/manifest.webapp', to: 'manifest.webapp' },
-      { from: './src/web/robots.txt', to: 'robots.txt' },
-    ]),
+    new CopyWebpackPlugin(
+      {
+        patterns: [
+          { from: './public/favicon.ico', to: 'favicon.ico' },
+          { from: './public/robots.txt', to: 'robots.txt' },
+        ]
+      }
+    ),
     new HtmlWebpackPlugin({
-      template: './src/web/index.html',
+      template: './public/index.html',
       chunksSortMode: 'dependency',
       chunks: ['vendor', 'main', 'common'],
       inject: 'body',

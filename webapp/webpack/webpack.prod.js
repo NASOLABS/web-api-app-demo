@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -9,11 +9,11 @@ const commonConfig = require('./webpack.common.js');
 const ENV = 'production';
 
 module.exports = options =>
-  webpackMerge(commonConfig({ env: ENV }), {
+  merge(commonConfig({ env: ENV }), {
     mode: ENV,
     devtool: 'source-map',
     entry: {
-      main: './src/app/index.jsx',
+      main: './src/index.js',
       vendors: ['react'],
     },
     output: {
@@ -75,7 +75,6 @@ module.exports = options =>
       }),
       new webpack.optimize.AggressiveMergingPlugin(),
       new webpack.optimize.ModuleConcatenationPlugin(),
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.IgnorePlugin(resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/),
     ],
   });
