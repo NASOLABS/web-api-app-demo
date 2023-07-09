@@ -2,6 +2,7 @@
 
 import React from 'react';
 import axios from 'axios';
+import 'core-js/es/array';
 
 export default class Health extends React.Component {
   state = {

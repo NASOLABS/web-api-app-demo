@@ -13,7 +13,7 @@ module.exports = options =>
     mode: ENV,
     devtool: 'source-map',
     entry: {
-      main: './src/index.js',
+      main: './src/index.jsx',
       vendors: ['react'],
     },
     output: {
