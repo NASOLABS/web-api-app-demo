@@ -81,8 +81,6 @@ module.exports = options => ({
     ),
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      chunksSortMode: 'dependency',
-      chunks: ['vendor', 'main', 'common'],
       inject: 'body',
       title: process.env.APP_NAME || 'NASOLABS App',
     }),
