@@ -2,7 +2,7 @@
 
 import React from 'react';
 import axios from 'axios';
-import 'core-js/es/array';
+// import 'core-js/es/array';
 
 export default class Health extends React.Component {
   state = {
@@ -11,8 +11,8 @@ export default class Health extends React.Component {
 
   componentDidMount() {
     // console.log("API Server is <b>{process.env.API_SERVER}")
-    axios.get(process.env.REACT_APP_API_SERVER)
-    // axios.get(process.env.API_SERVER)
+    // axios.get(process.env.REACT_APP_API_SERVER)
+    axios.get(process.env.API_SERVER)
     // axios.get(`http://127.0.0.1:5000/health`)
     // axios.get(`http://127.0.0.1:4000/health`)
       .then(res => {
