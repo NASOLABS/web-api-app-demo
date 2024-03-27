@@ -2,29 +2,33 @@
 # FROM python:3.10-alpine
 FROM python:3.10
 
-ENV PYTHONUNBUFFERED 1
+# Prevents Python from writing pyc files.
+# ENV PYTHONDONTWRITEBYTECODE=1
+
+# Keeps Python from buffering stdout and stderr to avoid situations where
+# the application crashes without emitting any logs due to buffering.
+ENV PYTHONUNBUFFERED=1
 
 RUN mkdir /app
-# ADD . /code/
+# ADD . /app/
 WORKDIR /app
 
-# COPY requirements.txt .
 COPY ./requirements.txt /app
-
-# COPY . /app
 # COPY . .
+# COPY . /app
 COPY ./ /app
 
 # RUN pip install -r /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Create the ENV variables
-# ENV HOST="0.0.0.0"
-# ENV PORT=5000
+# Download dependencies as a separate step to take advantage of Docker's caching.
+# Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
+# Leverage a bind mount to requirements.txt to avoid having to copy them into
+# into this layer.
+# RUN --mount=type=cache,target=/root/.cache/pip \
+#     --mount=type=bind,source=requirements.txt,target=requirements.txt \
+#     python -m pip install -r requirements.txt
 
 EXPOSE 5000
 
-# # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-# # CMD ["npm", "start"]
-# # ENTRYPOINT ["python3", "server.py"]
-CMD ["python", "server.py", "runserver", "0.0.0.0:5000"]
+ENTRYPOINT ["python3", "server.py"]
+# CMD ["python", "server.py", "runserver", "0.0.0.0:5000"]
